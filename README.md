@@ -66,8 +66,8 @@ services:
 ### `.env` file:
 
 ```env
-ARIA2_CONFIG_DIR=./config
-ARIA2_DOWNLOAD_DIR=./downloads
+ARIA2_CONFIG_DIR=./src/config
+ARIA2_DOWNLOAD_DIR=./src/downloads
 LISTEN_PORT=6800
 WEBUI_PORT=4500
 ```
