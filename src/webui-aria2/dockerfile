@@ -1,0 +1,24 @@
+# Base image
+FROM debian:bookworm-slim
+
+# Set environment variables
+ENV WEBUI_PORT=4455
+ENV ARIA2_WEBUI_DIR=/webui-aria2
+
+# Install python3.10 if not already included in the base image
+RUN apt-get update && \
+    apt-get install -y python3.10 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create webui directory
+RUN mkdir -p ${ARIA2_WEBUI_DIR}
+
+# Set working directory
+WORKDIR "${ARIA2_WEBUI_DIR}/docs"
+
+# Expose Web UI port
+EXPOSE ${WEBUI_PORT}
+
+# Start web server
+CMD ["python3", "-m", "http.server", ${WEBUI_PORT}]
