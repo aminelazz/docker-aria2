@@ -1,4 +1,8 @@
 # aria2 rpc + Web UI (Ubuntu 22.04)
+[![aminelazz/docker-aria2](https://img.shields.io/badge/Source-Github-007EC6?style=for-the-badge&logo=github)](https://github.com/aminelazz/docker-aria2)
+[![aminelazz/aria2](https://img.shields.io/badge/Version-v1.0.0-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
+[![aminelazz/aria2](https://img.shields.io/badge/Image_Size-93.7_MB-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
+
 Lightweight Ubuntu 22.04 image with aria2c (RPC enabled) and bundled webui-aria2 assets. It creates `/downloads`, `/config`, and clones [ziahamza/webui-aria2](https://github.com/ziahamza/webui-aria2) github repo for web ui files, exposes RPC on `6800` and a web UI port on `80`, and starts aria2 using `/config/aria2.conf` file.
 
 - Base: `ubuntu:22.04`; installs `python3.10` and `aria2`
