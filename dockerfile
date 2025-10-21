@@ -5,8 +5,8 @@ FROM alpine/git AS clone-webui
 RUN git clone https://github.com/ziahamza/webui-aria2.git /webui-aria2
 
 # ---- Stage 2: Build the final image ----
-# Base image
-FROM ubuntu:22.04
+# Base image (Python 3.10 on Alpine 3.22)
+FROM python:3.10-alpine3.22
 
 # Set arguments
 ARG LISTEN_PORT=6800
@@ -15,11 +15,8 @@ ARG CONFIG_DIR=/config
 
 ARG WEBUI_PORT=80
 
-# Install python3.10 & aria2 if not already included in the base image
-RUN apt-get update && \
-    apt-get install -y python3.10 aria2 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install aria2
+RUN apk add --no-cache aria2
 
 # Copy webui-aria2 from the clone stage
 COPY --from=clone-webui /webui-aria2 /webui-aria2

@@ -1,12 +1,12 @@
-# aria2 rpc + Web UI (Ubuntu 22.04)
+# aria2 rpc + Web UI (Alpine 3.22)
 [![aminelazz/docker-aria2](https://img.shields.io/badge/Source-Github-007EC6?style=for-the-badge&logo=github)](https://github.com/aminelazz/docker-aria2)
-[![aminelazz/aria2](https://img.shields.io/badge/Version-v1.2.0-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
-[![aminelazz/aria2](https://img.shields.io/badge/Image_Size-72_MB-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
+[![aminelazz/aria2](https://img.shields.io/badge/Version-v2.0.0-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
+[![aminelazz/aria2](https://img.shields.io/badge/Image_Size-40.2_MB-007EC6?style=for-the-badge&logo=docker)](https://hub.docker.com/r/aminelazz/aria2)
 [![Paypal Donation](https://img.shields.io/badge/Donate-Paypal-002991?style=for-the-badge&logo=paypal)](https://paypal.me/rogerwarrsubs)
 
-Lightweight Ubuntu 22.04 image with aria2c (RPC enabled) and bundled webui-aria2 assets. It creates `/downloads`, `/config`, and clones [ziahamza/webui-aria2](https://github.com/ziahamza/webui-aria2) github repo for web ui files, exposes RPC on `6800` and a web UI port on `80`, and starts aria2 using `/config/aria2.conf` file.
+Lightweight Alpine 3.22 base image with python 3.10 included and aria2c (RPC enabled) and bundled webui-aria2 assets. It creates `/downloads`, `/config`, and clones [ziahamza/webui-aria2](https://github.com/ziahamza/webui-aria2) github repo for web ui files, exposes RPC on `6800` and a web UI port on `80`, and starts aria2 using `/config/aria2.conf` file.
 
-- Base: `ubuntu:22.04`; installs `python3.10` and `aria2`
+- Base: `python:3.10-alpine3.22`; installs `aria2`
 - Args: `LISTEN_PORT=6800`, `WEBUI_PORT=80`, `DOWNLOAD_DIR=/downloads`, `CONFIG_DIR=/config`
 - Exposed ports: `6800` (RPC), `80` (optional web UI)
 - Volumes: mount `/downloads` for downloaded files through web ui and `/config` for `aria2.conf`
@@ -40,7 +40,7 @@ docker run -d --name aria2-webui \
 ```yaml
 services:
   aria2-rpc:
-    image: aria2
+    image: aminelazz/aria2
     container_name: aria2-rpc
     network_mode: bridge
     ports:
@@ -56,7 +56,7 @@ services:
     command: aria2c --conf-path=/config/aria2.conf
 
   aria2-webui:
-    image: aria2
+    image: aminelazz/aria2
     container_name: aria2-webui
     # restart: unless-stopped
     # network_mode: host
